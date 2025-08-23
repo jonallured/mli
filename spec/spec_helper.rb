@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "mli"
 
 RSpec.configure do |config|
