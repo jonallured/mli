@@ -1,0 +1,3 @@
+Commands:
+  mli help [COMMAND]  # Describe available commands or one specific command
+

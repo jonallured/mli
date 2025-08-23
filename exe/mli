@@ -1,3 +1,7 @@
 #!/usr/bin/env ruby
 
+require "bundler/setup"
 require "mli"
+require "mli/cli"
+
+Mli::CLI.start(ARGV)
