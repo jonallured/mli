@@ -2,6 +2,11 @@ require "thor"
 
 module Mli
   class CLI < Thor
+    desc "version", "Print the version"
+    def version
+      say Mli::VERSION
+    end
+
     def self.basename
       "mli"
     end
