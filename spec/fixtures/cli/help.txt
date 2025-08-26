@@ -1,4 +1,4 @@
 Commands:
   mli help [COMMAND]  # Describe available commands or one specific command
-  mli version         # Print the version
+  mli version         # Print the version number.
 
