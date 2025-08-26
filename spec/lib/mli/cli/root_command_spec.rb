@@ -1,5 +1,3 @@
-require "mli/cli/root_command"
-
 RSpec.describe Mli::Cli::RootCommand do
   describe "version" do
     context "with no arguments" do

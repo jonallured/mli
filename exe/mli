@@ -2,6 +2,6 @@
 
 require "bundler/setup"
 require "mli"
-require "mli/cli/root_command"
+require "mli/cli"
 
 Mli::Cli::RootCommand.start(ARGV)

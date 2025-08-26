@@ -1,5 +1,3 @@
-require "thor"
-
 module Mli
   module Cli
     class RootCommand < Thor
