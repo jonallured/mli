@@ -1,0 +1,7 @@
+// get
+  GET /api/v1/ping
+
+  Returns server time as integer.
+
+  Example:
+    $ mli ping get

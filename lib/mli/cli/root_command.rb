@@ -1,6 +1,9 @@
 module Mli
   module Cli
     class RootCommand < Thor
+      desc "ping", "Work with the /api/v1/ping family of endpoints."
+      subcommand "ping", PingCommand
+
       desc "version", "Print the version number."
       def version
         say Mli::VERSION
