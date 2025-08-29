@@ -1,4 +1,5 @@
 Commands:
   mli help [COMMAND]  # Describe available commands or one specific command
+  mli ping            # Work with the /api/v1/ping family of endpoints.
   mli version         # Print the version number.
 
