@@ -4,6 +4,9 @@ module Mli
       desc "ping", "Work with the /api/v1/ping family of endpoints."
       subcommand "ping", PingCommand
 
+      desc "vanishing_messages", "Work with the /api/v1/vanishing_messages family of endpoints."
+      subcommand "vanishing_messages", VanishingMessagesCommand
+
       desc "version", "Print the version number."
       def version
         say Mli::VERSION
