@@ -6,5 +6,5 @@ module Mli
 end
 
 loader = Zeitwerk::Loader.new
-loader.push_dir("lib/mli/cli", namespace: Mli::Cli)
+loader.push_dir("#{__dir__}/cli", namespace: Mli::Cli)
 loader.setup
