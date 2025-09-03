@@ -1,7 +1,7 @@
 module Mli
   module Cli
     class BaseCommand < Thor
-      class_option :pretty, type: :boolean, default: false, desc: "Format JSON response."
+      class_option :pretty, type: :boolean, default: false, desc: "Format JSON response"
 
       def self.attrs_for(args)
         Array(args).each_with_object({}) do |pair, memo|
