@@ -1,0 +1,43 @@
+// create
+  POST /api/v1/books
+
+  Attributes:
+    * finished_on: date, required
+    * format: string, required, one of: audio, kindle, print
+    * isbn: string, required
+    * pages: number, optional
+    * title: string, optional
+
+  Example:
+    $ mli books create finished_on:2025-01-01 format:print isbn:123-456-789
+
+// delete
+  DELETE /api/v1/books/:id
+
+  Example:
+    $ mli books delete 1
+
+// list
+  GET /api/v1/books
+
+  Example:
+    $ mli books list
+
+// update
+  PUT /api/v1/books/:id
+
+  Attributes:
+    * finished_on: date, required
+    * format: string, required, one of: audio, kindle, print
+    * isbn: string, required
+    * pages: number, optional
+    * title: string, optional
+
+  Example:
+    $ mli books update 1 pages:100
+
+// view
+  GET /api/v1/books/:id
+
+  Example:
+    $ mli books view 1
