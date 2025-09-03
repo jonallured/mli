@@ -1,7 +1,7 @@
 module Mli
   module Cli
     class VanishingMessagesCommand < BaseCommand
-      desc "create ATTRS", "Create VanishingMessage record with ATTRS."
+      desc "create ATTRS", "Create VanishingMessage record with ATTRS"
       long_desc docs_for(:vanishing_messages, :create), wrap: false
       def create(*args)
         vanishing_message_attrs = attrs_for(args)
