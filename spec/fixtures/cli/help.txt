@@ -1,6 +1,6 @@
 Commands:
   mli help [COMMAND]      # Describe available commands or one specific command
-  mli ping                # Work with the /api/v1/ping family of endpoints.
-  mli vanishing_messages  # Work with the /api/v1/vanishing_messages family o...
-  mli version             # Print the version number.
+  mli ping                # Use /api/v1/ping endpoint family
+  mli vanishing_messages  # Use /api/v1/vanishing_messages endpoint family
+  mli version             # Print the version number
 
