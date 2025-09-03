@@ -61,7 +61,7 @@ RSpec.describe Mli::Cli::BaseCommand do
 
       before do
         found_doc_data = File.read("spec/fixtures/cli/doc.txt")
-        allow(File).to receive(:read).with("docs/found.txt").and_return(found_doc_data)
+        expect(File).to receive(:read).with(match("docs/found.txt")).and_return(found_doc_data)
       end
 
       context "with a missing section" do

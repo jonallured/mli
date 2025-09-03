@@ -13,7 +13,7 @@ module Mli
       end
 
       def self.docs_for(topic, section)
-        topic_data = File.read("docs/#{topic}.txt")
+        topic_data = File.read("#{__dir__}/../../../docs/#{topic}.txt")
         sections_data = {}
         topic_data.split("// ").each do |section_part|
           name, *rest = section_part.split("\n")
