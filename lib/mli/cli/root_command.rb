@@ -1,6 +1,9 @@
 module Mli
   module Cli
     class RootCommand < Thor
+      desc "books", "Use /api/v1/books endpoint family"
+      subcommand "books", BooksCommand
+
       desc "ping", "Use /api/v1/ping endpoint family"
       subcommand "ping", PingCommand
 

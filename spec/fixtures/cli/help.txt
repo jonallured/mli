@@ -1,4 +1,5 @@
 Commands:
+  mli books               # Use /api/v1/books endpoint family
   mli help [COMMAND]      # Describe available commands or one specific command
   mli ping                # Use /api/v1/ping endpoint family
   mli vanishing_messages  # Use /api/v1/vanishing_messages endpoint family
