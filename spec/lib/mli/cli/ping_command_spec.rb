@@ -7,7 +7,7 @@ RSpec.describe Mli::Cli::PingCommand do
     context "with no flags" do
       let(:argument_vector) { %w[get] }
 
-      it "prints the server time in plain text" do
+      it "prints server time in plain text" do
         expected_output = "123456\n"
 
         expect do
@@ -19,7 +19,7 @@ RSpec.describe Mli::Cli::PingCommand do
     context "with pretty flag" do
       let(:argument_vector) { %w[get --pretty] }
 
-      it "prints the server time in pretty JSON format" do
+      it "prints server time in pretty format" do
         expected_output = <<~JSON
           {
             "server_time": "123456"

@@ -3,7 +3,7 @@ RSpec.describe Mli::Cli::RootCommand do
     context "with no arguments" do
       let(:argument_vector) { [] }
 
-      it "prints the help text" do
+      it "prints help text" do
         expected_output = File.read("spec/fixtures/cli/help.txt")
 
         expect do
@@ -15,7 +15,7 @@ RSpec.describe Mli::Cli::RootCommand do
     context "with version command" do
       let(:argument_vector) { %w[version] }
 
-      it "prints the version" do
+      it "prints version" do
         expected_output = Mli::VERSION + "\n"
 
         expect do
