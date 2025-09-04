@@ -3,8 +3,7 @@ module Mli
     def self.create(attrs)
       endpoint = "/api/v1/vanishing_messages"
       response = Mli.connection.post(endpoint, attrs)
-
-      return {error: "bad request"} if response.status == 400
+      return {error: "bad request"} unless response.success?
 
       {abracadabra: "poof!"}
     end
