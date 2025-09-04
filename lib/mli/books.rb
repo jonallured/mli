@@ -14,9 +14,9 @@ module Mli
       {done: :ok}
     end
 
-    def self.list
+    def self.list(page)
       endpoint = "/api/v1/books"
-      response = Mli.connection.get(endpoint)
+      response = Mli.connection.get(endpoint, page: page)
       response.body
     end
 

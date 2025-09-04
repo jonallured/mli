@@ -122,6 +122,19 @@ RSpec.describe Mli::Cli::BooksCommand do
       end
     end
 
+    context "with no records for a given page" do
+      let(:api_payload) { [] }
+      let(:argument_vector) { %w[list 7] }
+
+      it "prints empty array" do
+        expected_output = api_payload.to_json + "\n"
+
+        expect do
+          Mli::Cli::BooksCommand.start(argument_vector)
+        end.to output(expected_output).to_stdout
+      end
+    end
+
     context "with a few records" do
       let(:api_payload) do
         [

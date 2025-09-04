@@ -57,6 +57,7 @@ RSpec.describe Mli::Books do
   describe ".list" do
     it "gets the endpoint and returns list of book data" do
       endpoint = "/api/v1/books"
+      page = 1
       response_data = [
         {
           "created_at" => "2025-01-01T12:00:00.000Z",
@@ -70,8 +71,8 @@ RSpec.describe Mli::Books do
         }
       ]
       response = double(:mock_response, body: response_data)
-      expect(Mli.connection).to receive(:get).with(endpoint).and_return(response)
-      book_data = Mli::Books.list
+      expect(Mli.connection).to receive(:get).with(endpoint, page: page).and_return(response)
+      book_data = Mli::Books.list(page)
       expect(book_data).to eq response_data
     end
   end

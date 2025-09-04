@@ -16,10 +16,10 @@ module Mli
         say formatted(book_data)
       end
 
-      desc "list", "List Book records"
+      desc "list [PAGE]", "List Book records by PAGE"
       long_desc docs_for(:books, :list), wrap: false
-      def list
-        books_data = Books.list
+      def list(page = 1)
+        books_data = Books.list(page)
         say formatted(books_data)
       end
 
