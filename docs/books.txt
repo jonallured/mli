@@ -20,8 +20,15 @@
 // list
   GET /api/v1/books
 
-  Example:
+  Params:
+    * page: number, optional - defaults to 1
+
+  Examples:
+    Get the first page of books:
     $ mli books list
+
+    Get the third page of books:
+    $ mli books list 3
 
 // update
   PUT /api/v1/books/:id
