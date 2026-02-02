@@ -3,6 +3,7 @@ require "zeitwerk"
 
 loader = Zeitwerk::Loader.for_gem
 loader.ignore("#{__dir__}/mli/cli*")
+loader.push_dir("#{__dir__}/mli/resources", namespace: Mli)
 loader.setup
 
 module Mli
