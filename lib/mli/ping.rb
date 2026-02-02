@@ -3,7 +3,8 @@ module Mli
     def self.get
       endpoint = "/api/v1/ping"
       response = Mli.connection.get(endpoint)
-      response.body
+      server_time = response.body
+      {server_time: server_time}
     end
   end
 end

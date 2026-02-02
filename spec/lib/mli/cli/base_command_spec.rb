@@ -1,49 +1,4 @@
 RSpec.describe Mli::Cli::BaseCommand do
-  describe ".attrs_for" do
-    context "with nil args" do
-      it "returns an empty hash" do
-        args = nil
-        attrs = Mli::Cli::BaseCommand.attrs_for(args)
-        expect(attrs).to eq({})
-      end
-    end
-
-    context "with empty args" do
-      it "returns an empty hash" do
-        args = nil
-        attrs = Mli::Cli::BaseCommand.attrs_for(args)
-        expect(attrs).to eq({})
-      end
-    end
-
-    context "with invalid args" do
-      it "returns an empty hash" do
-        args = %w[invalid]
-        attrs = Mli::Cli::BaseCommand.attrs_for(args)
-        expect(attrs).to eq({})
-      end
-    end
-
-    context "with malformed args" do
-      it "returns an empty hash" do
-        args = %w[malformed:]
-        attrs = Mli::Cli::BaseCommand.attrs_for(args)
-        expect(attrs).to eq({})
-      end
-    end
-
-    context "with valid args" do
-      it "returns a hash with those key/value pairs" do
-        args = %w[first_name:jon last_name:allured]
-        attrs = Mli::Cli::BaseCommand.attrs_for(args)
-        expect(attrs).to eq({
-          "first_name" => "jon",
-          "last_name" => "allured"
-        })
-      end
-    end
-  end
-
   describe ".docs_for" do
     context "with a missing topic" do
       let(:topic) { :missing }
@@ -80,6 +35,31 @@ RSpec.describe Mli::Cli::BaseCommand do
           doc_data = Mli::Cli::BaseCommand.docs_for(topic, section)
           expect(doc_data).to eq "  GET /api/v1/found"
         end
+      end
+    end
+  end
+
+  describe "#formatted" do
+    context "without the pretty option" do
+      it "returns normal JSON" do
+        base_command = Mli::Cli::BaseCommand.new
+        dummy_data = {foo: :bar}
+        formatted = base_command.formatted(dummy_data)
+        expect(formatted).to eq '{"foo":"bar"}'
+      end
+    end
+
+    context "with the pretty option" do
+      it "returns pretty JSON" do
+        base_command = Mli::Cli::BaseCommand.new([], %w[--pretty], {})
+        dummy_data = {foo: :bar}
+        formatted = base_command.formatted(dummy_data)
+
+        expect(formatted).to eq(<<~JSON.chomp)
+          {
+            "foo": "bar"
+          }
+        JSON
       end
     end
   end

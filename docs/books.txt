@@ -1,15 +1,8 @@
 // create
   POST /api/v1/books
 
-  Attributes:
-    * finished_on: date, required
-    * format: string, required, one of: audio, kindle, print
-    * isbn: string, required
-    * pages: number, optional
-    * title: string, optional
-
   Example:
-    $ mli books create finished_on:2025-01-01 format:print isbn:123-456-789
+    $ mli books create --finished-on today --format print --isbn 123-456-789
 
 // delete
   DELETE /api/v1/books/:id
@@ -20,28 +13,14 @@
 // list
   GET /api/v1/books
 
-  Params:
-    * page: number, optional - defaults to 1
-
-  Examples:
-    Get the first page of books:
-    $ mli books list
-
-    Get the third page of books:
-    $ mli books list 3
+  Example:
+    $ mli books list --page 3
 
 // update
   PUT /api/v1/books/:id
 
-  Attributes:
-    * finished_on: date, required
-    * format: string, required, one of: audio, kindle, print
-    * isbn: string, required
-    * pages: number, optional
-    * title: string, optional
-
   Example:
-    $ mli books update 1 pages:100
+    $ mli books update 1 --pages 100
 
 // view
   GET /api/v1/books/:id
