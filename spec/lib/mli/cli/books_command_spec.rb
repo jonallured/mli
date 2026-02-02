@@ -4,41 +4,7 @@ RSpec.describe Mli::Cli::BooksCommand do
       faraday_stubs.post("/api/v1/books") { [api_status, {}, api_payload] }
     end
 
-    context "with no attrs" do
-      let(:api_payload) do
-        {"error" => "param is missing or the value is empty or invalid: book"}
-      end
-
-      let(:api_status) { 400 }
-      let(:argument_vector) { %w[create] }
-
-      it "prints missing error" do
-        expected_output = api_payload.to_json + "\n"
-
-        expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
-        end.to output(expected_output).to_stdout
-      end
-    end
-
-    context "without required attrs" do
-      let(:api_payload) do
-        {"error" => "Validation failed: Finished on can't be blank, Format is not included in the list, Isbn can't be blank"}
-      end
-
-      let(:api_status) { 400 }
-      let(:argument_vector) { %w[create foo:bar] }
-
-      it "prints validation error" do
-        expected_output = api_payload.to_json + "\n"
-
-        expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
-        end.to output(expected_output).to_stdout
-      end
-    end
-
-    context "with required attrs" do
+    context "with required options" do
       let(:api_payload) do
         {
           "created_at" => "2025-01-01T12:00:00.000Z",
@@ -53,9 +19,105 @@ RSpec.describe Mli::Cli::BooksCommand do
       end
 
       let(:api_status) { 201 }
-      let(:argument_vector) { %w[create finished_on:2025-01-01 format:print isbn:123-456-789] }
 
-      it "prints created book data" do
+      let(:argument_vector) do
+        %w[create --finished_on 2025-01-01 --format print --isbn 123-456-789]
+      end
+
+      it "sends api call and prints created book data" do
+        expected_attrs = {
+          finished_on: "2025-01-01",
+          format: "print",
+          isbn: "123-456-789"
+        }
+        expect(Mli::Books).to receive(:create).with(expected_attrs).and_call_original
+
+        expected_output = api_payload.to_json + "\n"
+
+        expect do
+          Mli::Cli::BooksCommand.start(argument_vector)
+        end.to output(expected_output).to_stdout
+      end
+    end
+
+    context "with today for finished_on" do
+      let(:api_payload) do
+        {
+          "created_at" => "#{Date.today}T12:00:00.000Z",
+          "finished_on" => "2025-01-01",
+          "format" => "print",
+          "id" => 1,
+          "isbn" => "123-456-789",
+          "pages" => nil,
+          "title" => nil,
+          "updated_at" => "2025-01-01T12:00:00.000Z"
+        }
+      end
+
+      let(:api_status) { 201 }
+
+      let(:argument_vector) do
+        %w[create --finished_on today --format print --isbn 123-456-789]
+      end
+
+      it "sets finished_on to today's date" do
+        expected_attrs = {
+          finished_on: Date.today.to_s,
+          format: "print",
+          isbn: "123-456-789"
+        }
+        expect(Mli::Books).to receive(:create).with(expected_attrs).and_call_original
+
+        expected_output = api_payload.to_json + "\n"
+
+        expect do
+          Mli::Cli::BooksCommand.start(argument_vector)
+        end.to output(expected_output).to_stdout
+      end
+    end
+
+    context "with extra options" do
+      let(:api_payload) do
+        {
+          "created_at" => "2025-01-01T12:00:00.000Z",
+          "finished_on" => "2025-01-01",
+          "format" => "print",
+          "id" => 1,
+          "isbn" => "123-456-789",
+          "pages" => 77,
+          "title" => "Very Good Book",
+          "updated_at" => "2025-01-01T12:00:00.000Z"
+        }
+      end
+
+      let(:api_status) { 201 }
+
+      let(:argument_vector) do
+        [
+          "create",
+          "--finished_on",
+          "2025-01-01",
+          "--format",
+          "print",
+          "--isbn",
+          "123-456-789",
+          "--pages",
+          "77",
+          "--title",
+          "Very Good Book"
+        ]
+      end
+
+      it "sends those extra options" do
+        expected_attrs = {
+          finished_on: "2025-01-01",
+          format: "print",
+          isbn: "123-456-789",
+          pages: 77,
+          title: "Very Good Book"
+        }
+        expect(Mli::Books).to receive(:create).with(expected_attrs).and_call_original
+
         expected_output = api_payload.to_json + "\n"
 
         expect do
@@ -124,7 +186,7 @@ RSpec.describe Mli::Cli::BooksCommand do
 
     context "with no records for a given page" do
       let(:api_payload) { [] }
-      let(:argument_vector) { %w[list 7] }
+      let(:argument_vector) { %w[list --page 7] }
 
       it "prints empty array" do
         expected_output = api_payload.to_json + "\n"
@@ -209,7 +271,7 @@ RSpec.describe Mli::Cli::BooksCommand do
       end
 
       let(:api_status) { 404 }
-      let(:argument_vector) { %w[update 1 pages:77] }
+      let(:argument_vector) { %w[update 1 --pages 77] }
 
       it "prints not found error" do
         expected_output = api_payload.to_json + "\n"
@@ -235,7 +297,7 @@ RSpec.describe Mli::Cli::BooksCommand do
       end
 
       let(:api_status) { 200 }
-      let(:argument_vector) { %w[update 1 pages:77] }
+      let(:argument_vector) { %w[update 1 --pages 77] }
 
       it "prints updated book data" do
         expected_output = api_payload.to_json + "\n"

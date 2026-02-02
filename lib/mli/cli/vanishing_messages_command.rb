@@ -1,10 +1,13 @@
 module Mli
   module Cli
     class VanishingMessagesCommand < BaseCommand
-      desc "create ATTRS", "Create VanishingMessage record with ATTRS"
+      desc "create", "Create VanishingMessage resource"
       long_desc docs_for(:vanishing_messages, :create), wrap: false
-      def create(*args)
-        vanishing_message_attrs = attrs_for(args)
+      option :body, type: :string, required: true
+      def create
+        vanishing_message_attrs = {
+          body: options[:body]
+        }
         vanishing_message_data = VanishingMessages.create(vanishing_message_attrs)
         say formatted(vanishing_message_data)
       end

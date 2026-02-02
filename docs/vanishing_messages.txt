@@ -1,8 +1,5 @@
 // create
   POST /api/v1/vanishing_messages
 
-  Attributes:
-    * body: text, required
-
   Example:
-    $ mli vanishing_messages create body:shhh
+    $ mli vanishing_messages create --body shhh
