@@ -1,14 +1,14 @@
 module Mli
   module Cli
     class RootCommand < Thor
-      desc "books", "Use /api/v1/books endpoint family"
-      subcommand "books", BooksCommand
+      desc "book", "Use /api/v1/books endpoint family"
+      subcommand "book", BookCommand
 
       desc "ping", "Use /api/v1/ping endpoint family"
       subcommand "ping", PingCommand
 
-      desc "vanishing_messages", "Use /api/v1/vanishing_messages endpoint family"
-      subcommand "vanishing_messages", VanishingMessagesCommand
+      desc "vanishing_message", "Use /api/v1/vanishing_messages endpoint family"
+      subcommand "vanishing_message", VanishingMessageCommand
 
       desc "version", "Print the version number"
       def version

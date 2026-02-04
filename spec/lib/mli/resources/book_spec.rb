@@ -1,4 +1,4 @@
-RSpec.describe Mli::Books do
+RSpec.describe Mli::Book do
   describe ".create" do
     it "posts attrs and returns book data" do
       endpoint = "/api/v1/books"
@@ -19,7 +19,7 @@ RSpec.describe Mli::Books do
       }
       response = double(:mock_response, body: response_data)
       expect(Mli.connection).to receive(:post).with(endpoint, book: book_attrs).and_return(response)
-      book_data = Mli::Books.create(book_attrs)
+      book_data = Mli::Book.create(book_attrs)
       expect(book_data).to eq response_data
     end
   end
@@ -38,7 +38,7 @@ RSpec.describe Mli::Books do
       let(:success) { false }
 
       it "deletes to the id and returns error message" do
-        book_data = Mli::Books.delete(book_id)
+        book_data = Mli::Book.delete(book_id)
         expect(book_data).to eq response_data
       end
     end
@@ -48,7 +48,7 @@ RSpec.describe Mli::Books do
       let(:success) { true }
 
       it "deletes to the id and returns success message" do
-        book_data = Mli::Books.delete(book_id)
+        book_data = Mli::Book.delete(book_id)
         expect(book_data).to eq({done: :ok})
       end
     end
@@ -72,7 +72,7 @@ RSpec.describe Mli::Books do
       ]
       response = double(:mock_response, body: response_data)
       expect(Mli.connection).to receive(:get).with(endpoint, page: page).and_return(response)
-      book_data = Mli::Books.list(page)
+      book_data = Mli::Book.list(page)
       expect(book_data).to eq response_data
     end
   end
@@ -94,7 +94,7 @@ RSpec.describe Mli::Books do
       }
       response = double(:mock_response, body: response_data)
       expect(Mli.connection).to receive(:put).with(endpoint, book: book_attrs).and_return(response)
-      book_data = Mli::Books.update(book_id, book_attrs)
+      book_data = Mli::Book.update(book_id, book_attrs)
       expect(book_data).to eq response_data
     end
   end
@@ -115,7 +115,7 @@ RSpec.describe Mli::Books do
       }
       response = double(:mock_response, body: response_data)
       expect(Mli.connection).to receive(:get).with(endpoint).and_return(response)
-      book_data = Mli::Books.view(book_id)
+      book_data = Mli::Book.view(book_id)
       expect(book_data).to eq response_data
     end
   end

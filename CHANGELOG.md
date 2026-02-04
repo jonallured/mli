@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 * Use options instead of method args ([#10][])
 * Move resource files to separate folder ([#11][])
+* Use singular for resources and commands ([#13][])
 
 ### Deprecated
 
@@ -74,3 +75,4 @@ The format is based on [Keep a Changelog][] and this project adheres to
 [#10]: https://github.com/jonallured/mli/pull/10
 [#11]: https://github.com/jonallured/mli/pull/11
 [#12]: https://github.com/jonallured/mli/pull/12
+[#13]: https://github.com/jonallured/mli/pull/13
