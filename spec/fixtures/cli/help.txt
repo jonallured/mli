@@ -1,8 +1,8 @@
 Commands:
-  mli books               # Use /api/v1/books endpoint family
-  mli help [COMMAND]      # Describe available commands or one specific command
-  mli ping                # Use /api/v1/ping endpoint family
-  mli tree                # Print a tree of all available commands
-  mli vanishing_messages  # Use /api/v1/vanishing_messages endpoint family
-  mli version             # Print the version number
+  mli book               # Use /api/v1/books endpoint family
+  mli help [COMMAND]     # Describe available commands or one specific command
+  mli ping               # Use /api/v1/ping endpoint family
+  mli tree               # Print a tree of all available commands
+  mli vanishing_message  # Use /api/v1/vanishing_messages endpoint family
+  mli version            # Print the version number
 

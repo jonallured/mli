@@ -1,4 +1,4 @@
-RSpec.describe Mli::Cli::VanishingMessagesCommand do
+RSpec.describe Mli::Cli::VanishingMessageCommand do
   describe "create" do
     let(:error_response) { [400, {}, ""] }
     let(:success_response) { [201, {}, ""] }
@@ -15,7 +15,7 @@ RSpec.describe Mli::Cli::VanishingMessagesCommand do
         expected_output = {abracadabra: "poof!"}.to_json + "\n"
 
         expect do
-          Mli::Cli::VanishingMessagesCommand.start(argument_vector)
+          Mli::Cli::VanishingMessageCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
       end
     end

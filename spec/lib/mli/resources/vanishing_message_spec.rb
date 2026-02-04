@@ -1,4 +1,4 @@
-RSpec.describe Mli::VanishingMessages do
+RSpec.describe Mli::VanishingMessage do
   describe ".create" do
     let(:endpoint) { "/api/v1/vanishing_messages" }
     let(:response) { double(:mock_response, success?: success) }
@@ -12,7 +12,7 @@ RSpec.describe Mli::VanishingMessages do
       let(:success) { false }
 
       it "posts attrs and returns bad request error" do
-        vanishing_message_data = Mli::VanishingMessages.create(attrs)
+        vanishing_message_data = Mli::VanishingMessage.create(attrs)
         expect(vanishing_message_data).to eq({error: "bad request"})
       end
     end
@@ -22,7 +22,7 @@ RSpec.describe Mli::VanishingMessages do
       let(:success) { true }
 
       it "posts attrs and returns success" do
-        vanishing_message_data = Mli::VanishingMessages.create(attrs)
+        vanishing_message_data = Mli::VanishingMessage.create(attrs)
         expect(vanishing_message_data).to eq({abracadabra: "poof!"})
       end
     end

@@ -1,5 +1,5 @@
 module Mli
-  class VanishingMessages
+  class VanishingMessage
     def self.create(attrs)
       endpoint = "/api/v1/vanishing_messages"
       response = Mli.connection.post(endpoint, attrs)

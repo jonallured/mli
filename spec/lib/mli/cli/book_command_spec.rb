@@ -1,4 +1,4 @@
-RSpec.describe Mli::Cli::BooksCommand do
+RSpec.describe Mli::Cli::BookCommand do
   describe "create" do
     before do
       faraday_stubs.post("/api/v1/books") { [api_status, {}, api_payload] }
@@ -30,12 +30,12 @@ RSpec.describe Mli::Cli::BooksCommand do
           format: "print",
           isbn: "123-456-789"
         }
-        expect(Mli::Books).to receive(:create).with(expected_attrs).and_call_original
+        expect(Mli::Book).to receive(:create).with(expected_attrs).and_call_original
 
         expected_output = api_payload.to_json + "\n"
 
         expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
+          Mli::Cli::BookCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
       end
     end
@@ -66,12 +66,12 @@ RSpec.describe Mli::Cli::BooksCommand do
           format: "print",
           isbn: "123-456-789"
         }
-        expect(Mli::Books).to receive(:create).with(expected_attrs).and_call_original
+        expect(Mli::Book).to receive(:create).with(expected_attrs).and_call_original
 
         expected_output = api_payload.to_json + "\n"
 
         expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
+          Mli::Cli::BookCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
       end
     end
@@ -116,12 +116,12 @@ RSpec.describe Mli::Cli::BooksCommand do
           pages: 77,
           title: "Very Good Book"
         }
-        expect(Mli::Books).to receive(:create).with(expected_attrs).and_call_original
+        expect(Mli::Book).to receive(:create).with(expected_attrs).and_call_original
 
         expected_output = api_payload.to_json + "\n"
 
         expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
+          Mli::Cli::BookCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
       end
     end
@@ -145,7 +145,7 @@ RSpec.describe Mli::Cli::BooksCommand do
         expected_output = api_payload.to_json + "\n"
 
         expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
+          Mli::Cli::BookCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
       end
     end
@@ -158,7 +158,7 @@ RSpec.describe Mli::Cli::BooksCommand do
         expected_output = {done: :ok}.to_json + "\n"
 
         expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
+          Mli::Cli::BookCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
       end
     end
@@ -179,7 +179,7 @@ RSpec.describe Mli::Cli::BooksCommand do
         expected_output = api_payload.to_json + "\n"
 
         expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
+          Mli::Cli::BookCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
       end
     end
@@ -192,7 +192,7 @@ RSpec.describe Mli::Cli::BooksCommand do
         expected_output = api_payload.to_json + "\n"
 
         expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
+          Mli::Cli::BookCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
       end
     end
@@ -237,7 +237,7 @@ RSpec.describe Mli::Cli::BooksCommand do
         expected_output = api_payload.to_json + "\n"
 
         expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
+          Mli::Cli::BookCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
       end
     end
@@ -260,7 +260,7 @@ RSpec.describe Mli::Cli::BooksCommand do
         expected_output = api_payload.to_json + "\n"
 
         expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
+          Mli::Cli::BookCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
       end
     end
@@ -277,7 +277,7 @@ RSpec.describe Mli::Cli::BooksCommand do
         expected_output = api_payload.to_json + "\n"
 
         expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
+          Mli::Cli::BookCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
       end
     end
@@ -303,7 +303,7 @@ RSpec.describe Mli::Cli::BooksCommand do
         expected_output = api_payload.to_json + "\n"
 
         expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
+          Mli::Cli::BookCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
       end
     end
@@ -327,7 +327,7 @@ RSpec.describe Mli::Cli::BooksCommand do
         expected_output = api_payload.to_json + "\n"
 
         expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
+          Mli::Cli::BookCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
       end
     end
@@ -352,7 +352,7 @@ RSpec.describe Mli::Cli::BooksCommand do
         expected_output = api_payload.to_json + "\n"
 
         expect do
-          Mli::Cli::BooksCommand.start(argument_vector)
+          Mli::Cli::BookCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
       end
     end

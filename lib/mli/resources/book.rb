@@ -1,5 +1,5 @@
 module Mli
-  class Books
+  class Book
     def self.create(book_attrs)
       endpoint = "/api/v1/books"
       response = Mli.connection.post(endpoint, book: book_attrs)
