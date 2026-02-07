@@ -2,28 +2,28 @@
   POST /api/v1/books
 
   Example:
-    $ mli books create --finished-on today --format print --isbn 123-456-789
+    $ mli book create --finished-on today --format print --isbn 123-456-789
 
 // delete
   DELETE /api/v1/books/:id
 
   Example:
-    $ mli books delete 1
+    $ mli book delete 1
 
 // list
   GET /api/v1/books
 
   Example:
-    $ mli books list --page 3
+    $ mli book list --page 3
 
 // update
   PUT /api/v1/books/:id
 
   Example:
-    $ mli books update 1 --pages 100
+    $ mli book update 1 --pages 100
 
 // view
   GET /api/v1/books/:id
 
   Example:
-    $ mli books view 1
+    $ mli book view 1
