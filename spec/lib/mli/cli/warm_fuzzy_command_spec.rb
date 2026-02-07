@@ -78,7 +78,7 @@ RSpec.describe Mli::Cli::WarmFuzzyCommand do
           "author" => "Your Biggest Fan",
           "body" => "I think you are just okay.",
           "received_at" => "2026-01-01T00:00:00Z",
-          "screenshot_path" => "test.png",
+          "screenshot_path" => "spec/fixtures/code.png",
           "title" => "Just Okay"
         }
 
@@ -99,7 +99,7 @@ RSpec.describe Mli::Cli::WarmFuzzyCommand do
             "--body",
             "I think you are just okay.",
             "--screenshot_path",
-            "test.png"
+            "spec/fixtures/code.png"
           ]
 
           Mli::Cli::RootCommand.start(argument_vector)
