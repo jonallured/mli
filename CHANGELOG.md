@@ -29,6 +29,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 * Configure spec task without verbose output ([#9][])
 * Fix some reorg fallout ([#14][])
+* Build from flat attrs ([#16][])
 
 ### Security
 
@@ -80,3 +81,4 @@ The format is based on [Keep a Changelog][] and this project adheres to
 [#13]: https://github.com/jonallured/mli/pull/13
 [#14]: https://github.com/jonallured/mli/pull/14
 [#15]: https://github.com/jonallured/mli/pull/15
+[#16]: https://github.com/jonallured/mli/pull/16
