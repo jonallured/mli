@@ -10,6 +10,9 @@ module Mli
       desc "vanishing_message", "Use /api/v1/vanishing_messages endpoint family"
       subcommand "vanishing_message", VanishingMessageCommand
 
+      desc "warm_fuzzy", "Use /api/v1/warm_fuzzies endpoint family"
+      subcommand "warm_fuzzy", WarmFuzzyCommand
+
       desc "version", "Print the version number"
       def version
         say Mli::VERSION
