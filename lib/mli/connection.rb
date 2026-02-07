@@ -18,6 +18,7 @@ module Mli
 
       Faraday.new(url: base_url, headers: headers) do |f|
         f.adapter(*config.adapter_args)
+        f.request :multipart
         f.request :json
         f.response :json
       end
