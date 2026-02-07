@@ -1,4 +1,5 @@
 require "faraday"
+require "faraday/multipart"
 require "zeitwerk"
 
 module Mli

@@ -31,7 +31,13 @@ RSpec.describe Mli::Connection do
         expect(connection.url_prefix.to_s).to eq Mli::Connection::DEFAULT_BASE_URL
 
         handlers = connection.builder.handlers
-        expect(handlers).to eq [Faraday::Request::Json, Faraday::Response::Json]
+        expect(handlers).to eq(
+          [
+            Faraday::Multipart::Middleware,
+            Faraday::Request::Json,
+            Faraday::Response::Json
+          ]
+        )
 
         headers = connection.headers
         expect(headers["User-Agent"]).to eq "Mli v#{Mli::VERSION} (Faraday v#{Faraday::VERSION})"
