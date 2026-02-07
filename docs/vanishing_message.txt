@@ -2,4 +2,4 @@
   POST /api/v1/vanishing_messages
 
   Example:
-    $ mli vanishing_messages create --body shhh
+    $ mli vanishing_message create --body shhh
