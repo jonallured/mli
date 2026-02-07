@@ -1,0 +1,29 @@
+// create
+  POST /api/v1/warm_fuzzies
+
+  Example:
+    $ mli warm_fuzzy create --finished-on today --format print --isbn 123-456-789
+
+// delete
+  DELETE /api/v1/warm_fuzzies/:id
+
+  Example:
+    $ mli warm_fuzzy delete 1
+
+// list
+  GET /api/v1/warm_fuzzies
+
+  Example:
+    $ mli warm_fuzzy list --page 3
+
+// update
+  PUT /api/v1/warm_fuzzies/:id
+
+  Example:
+    $ mli warm_fuzzy update 1 --pages 100
+
+// view
+  GET /api/v1/warm_fuzzies/:id
+
+  Example:
+    $ mli warm_fuzzy view 1

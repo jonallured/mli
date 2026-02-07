@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 ### Added
 
 * Add a CHANGELOG ([#12][])
+* Add warm fuzzy command and resource ([#15][])
 
 ### Changed
 
@@ -78,3 +79,4 @@ The format is based on [Keep a Changelog][] and this project adheres to
 [#12]: https://github.com/jonallured/mli/pull/12
 [#13]: https://github.com/jonallured/mli/pull/13
 [#14]: https://github.com/jonallured/mli/pull/14
+[#15]: https://github.com/jonallured/mli/pull/15
