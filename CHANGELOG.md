@@ -27,6 +27,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 ### Fixed
 
 * Configure spec task without verbose output ([#9][])
+* Fix some reorg fallout ([#14][])
 
 ### Security
 
@@ -76,3 +77,4 @@ The format is based on [Keep a Changelog][] and this project adheres to
 [#11]: https://github.com/jonallured/mli/pull/11
 [#12]: https://github.com/jonallured/mli/pull/12
 [#13]: https://github.com/jonallured/mli/pull/13
+[#14]: https://github.com/jonallured/mli/pull/14
