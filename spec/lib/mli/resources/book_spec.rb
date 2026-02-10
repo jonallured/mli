@@ -1,12 +1,13 @@
 RSpec.describe Mli::Book do
   describe ".create" do
-    it "posts attrs and returns book data" do
-      endpoint = "/api/v1/books"
-      book_attrs = {
+    it "posts params and returns book data" do
+      attrs = {
         "finished_on" => "2025-01-01",
         "format" => "print",
         "isbn" => "123-456-789"
       }
+      endpoint = "/api/v1/books"
+      expected_params = {book: attrs}
       response_data = {
         "created_at" => "2025-01-01T12:00:00.000Z",
         "finished_on" => "2025-01-01",
@@ -18,14 +19,14 @@ RSpec.describe Mli::Book do
         "updated_at" => "2025-01-01T12:00:00.000Z"
       }
       response = double(:mock_response, body: response_data)
-      expect(Mli.connection).to receive(:post).with(endpoint, book: book_attrs).and_return(response)
-      book_data = Mli::Book.create(book_attrs)
-      expect(book_data).to eq response_data
+      expect(Mli.connection).to receive(:post).with(endpoint, expected_params).and_return(response)
+      data = Mli::Book.create(attrs)
+      expect(data).to eq response_data
     end
   end
 
   describe ".delete" do
-    let(:book_id) { 1 }
+    let(:id) { 1 }
     let(:endpoint) { "/api/v1/books/1" }
     let(:response) { double(:mock_response, body: response_data, success?: success) }
 

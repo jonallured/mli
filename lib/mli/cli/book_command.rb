@@ -1,6 +1,8 @@
 module Mli
   module Cli
     class BookCommand < BaseCommand
+      ATTR_NAMES = %i[finished_on format isbn pages title]
+
       desc "create", "Create Book resource"
       long_desc docs_for(:book, :create), wrap: false
       option :finished_on, type: :string, required: true, desc: "YYYY-MM-DD or today"
@@ -9,25 +11,16 @@ module Mli
       option :pages, type: :numeric, required: false
       option :title, type: :string, required: false
       def create
-        finished_on = (options[:finished_on] == "today") ? Date.today.to_s : options[:finished_on]
-
-        book_attrs = {
-          finished_on: finished_on,
-          format: options[:format],
-          isbn: options[:isbn],
-          pages: options[:pages],
-          title: options[:title]
-        }.compact
-
-        book_data = Book.create(book_attrs)
-        say formatted(book_data)
+        attrs = options.slice(*ATTR_NAMES)
+        data = Book.create(attrs)
+        say formatted(data)
       end
 
       desc "delete ID", "Delete Book resource with ID"
       long_desc docs_for(:book, :delete), wrap: false
-      def delete(book_id)
-        book_data = Book.delete(book_id)
-        say formatted(book_data)
+      def delete(id)
+        data = Book.delete(id)
+        say formatted(data)
       end
 
       desc "list", "List Book resources"
@@ -35,8 +28,8 @@ module Mli
       option :page, type: :numeric, default: 1, required: false
       def list
         page = options[:page]
-        books_data = Book.list(page)
-        say formatted(books_data)
+        data = Book.list(page)
+        say formatted(data)
       end
 
       desc "update ID", "Update Book resource with ID"
@@ -46,26 +39,17 @@ module Mli
       option :isbn, type: :string, required: false, desc: "Used to populate pages/title"
       option :pages, type: :numeric, required: false
       option :title, type: :string, required: false
-      def update(book_id)
-        finished_on = (options[:finished_on] == "today") ? Date.today.to_s : options[:finished_on]
-
-        book_attrs = {
-          finished_on: finished_on,
-          format: options[:format],
-          isbn: options[:isbn],
-          pages: options[:pages],
-          title: options[:title]
-        }.compact
-
-        book_data = Book.update(book_id, book_attrs)
-        say formatted(book_data)
+      def update(id)
+        attrs = options.slice(*ATTR_NAMES)
+        data = Book.update(id, attrs)
+        say formatted(data)
       end
 
       desc "view ID", "View Book resource with ID"
       long_desc docs_for(:book, :view), wrap: false
-      def view(book_id)
-        book_data = Book.view(book_id)
-        say formatted(book_data)
+      def view(id)
+        data = Book.view(id)
+        say formatted(data)
       end
     end
   end

@@ -298,15 +298,17 @@ RSpec.describe Mli::Cli::WarmFuzzyCommand do
 
     context "when record not found" do
       it "prints not found error" do
-        api_payload = {"error" => "Couldn't find WarmFuzzy with 'id'=1"}
-        faraday_stubs.put("/api/v1/warm_fuzzies/1") { [404, {}, api_payload] }
+        api_payload = {"error" => "Couldn't find WarmFuzzy with 'id'=invalid"}
+        faraday_stubs.put("/api/v1/warm_fuzzies/invalid") { [404, {}, api_payload] }
+        expected_attrs = {"body" => "Is this better?"}
+        expect(Mli::WarmFuzzy).to receive(:update).with("invalid", expected_attrs).and_call_original
         expected_output = api_payload.to_json + "\n"
 
         expect do
           argument_vector = [
             "warm_fuzzy",
             "update",
-            "1",
+            "invalid",
             "--body",
             "Is this better?"
           ]
@@ -372,7 +374,7 @@ RSpec.describe Mli::Cli::WarmFuzzyCommand do
     end
 
     context "when record is found" do
-      it "prints warmfuzzy data" do
+      it "prints data" do
         api_payload = {
           "author" => "Your Biggest Fan",
           "body" => "I think you are just okay.",

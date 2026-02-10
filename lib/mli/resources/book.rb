@@ -1,13 +1,15 @@
 module Mli
   class Book
-    def self.create(book_attrs)
+    def self.create(attrs)
       endpoint = "/api/v1/books"
-      response = Mli.connection.post(endpoint, book: book_attrs)
+      book_params = Mli::ParamBuilder.from(attrs)
+      params = {book: book_params}
+      response = Mli.connection.post(endpoint, params)
       response.body
     end
 
-    def self.delete(book_id)
-      endpoint = "/api/v1/books/#{book_id}"
+    def self.delete(id)
+      endpoint = "/api/v1/books/#{id}"
       response = Mli.connection.delete(endpoint)
       return response.body unless response.success?
 
@@ -16,18 +18,21 @@ module Mli
 
     def self.list(page)
       endpoint = "/api/v1/books"
-      response = Mli.connection.get(endpoint, page: page)
+      params = {page: page}
+      response = Mli.connection.get(endpoint, params)
       response.body
     end
 
-    def self.update(book_id, book_attrs)
-      endpoint = "/api/v1/books/#{book_id}"
-      response = Mli.connection.put(endpoint, book: book_attrs)
+    def self.update(id, attrs)
+      endpoint = "/api/v1/books/#{id}"
+      book_params = Mli::ParamBuilder.from(attrs)
+      params = {book: book_params}
+      response = Mli.connection.put(endpoint, params)
       response.body
     end
 
-    def self.view(book_id)
-      endpoint = "/api/v1/books/#{book_id}"
+    def self.view(id)
+      endpoint = "/api/v1/books/#{id}"
       response = Mli.connection.get(endpoint)
       response.body
     end
