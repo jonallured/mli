@@ -11,6 +11,8 @@ loader.push_dir("#{__dir__}/mli/resources", namespace: Mli)
 loader.setup
 
 module Mli
+  class NilIdError < BaseError; end
+
   def self.config
     @config ||= Config.new(ENV, [Faraday.default_adapter])
   end

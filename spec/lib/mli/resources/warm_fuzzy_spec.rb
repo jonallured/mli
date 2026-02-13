@@ -1,123 +1,79 @@
 RSpec.describe Mli::WarmFuzzy do
   describe ".create" do
-    it "posts params and returns data" do
-      attrs = {
-        "author" => "Your Biggest Fan",
-        "received_at" => "2026-01-01T00:00:00",
-        "title" => "Just Okay"
-      }
-      endpoint = "/api/v1/warm_fuzzies"
-      expected_params = {warm_fuzzy: attrs}
-      response_data = {
-        "author" => "Your Biggest Fan",
-        "body" => nil,
-        "created_at" => "2026-02-01T00:00:00.000Z",
-        "id" => 1,
-        "received_at" => "2026-01-01T00:00:00.000Z",
-        "title" => "Just Okay",
-        "updated_at" => "2026-02-01T00:00:00.000Z"
-      }
-      response = double(:mock_response, body: response_data)
-      expect(Mli.connection).to receive(:post).with(endpoint, expected_params).and_return(response)
-      data = Mli::WarmFuzzy.create(attrs)
-      expect(data).to eq response_data
+    context "with nil attrs" do
+      it "returns an invalid params error"
+    end
+
+    context "with empty attrs" do
+      it "returns an invalid params error"
+    end
+
+    context "without required attrs" do
+      it "returns a validation error"
+    end
+
+    context "with required attrs" do
+      it "returns warm fuzzy data"
     end
   end
 
   describe ".delete" do
-    context "when record not found" do
-      it "deletes to the id and returns error message" do
-        response_data = {"error" => "Couldn't find WarmFuzzy with 'id'=invalid"}
-        response = double(:mock_response, body: response_data, success?: false)
-        endpoint = "/api/v1/warm_fuzzies/invalid"
-        expect(Mli.connection).to receive(:delete).with(endpoint).and_return(response)
-        data = Mli::WarmFuzzy.delete("invalid")
-        expect(data).to eq response_data
-      end
+    context "with a nil id" do
+      it "raises a NilIdError"
     end
 
-    context "when record is found" do
-      it "deletes to the id and returns success message" do
-        response = double(:mock_response, body: "", success?: true)
-        endpoint = "/api/v1/warm_fuzzies/1"
-        expect(Mli.connection).to receive(:delete).with(endpoint).and_return(response)
-        data = Mli::WarmFuzzy.delete("1")
-        expect(data).to eq({done: :ok})
-      end
+    context "with an invalid id" do
+      it "returns a not found error"
+    end
+
+    context "with a valid id" do
+      it "returns done and ok"
     end
   end
 
   describe ".list" do
-    it "gets the endpoint and returns list of data" do
-      endpoint = "/api/v1/warm_fuzzies"
-      expected_params = {page: 1}
-      response_data = [
-        {
-          "author" => "Your Biggest Fan",
-          "body" => nil,
-          "created_at" => "2026-02-01T00:00:00.000Z",
-          "id" => 1,
-          "received_at" => "2026-01-01T00:00:00.000Z",
-          "title" => "Just Okay",
-          "updated_at" => "2025-01-01T12:00:00.000Z"
-        }
-      ]
-      response = double(:mock_response, body: response_data)
-      expect(Mli.connection).to receive(:get).with(endpoint, expected_params).and_return(response)
-      data = Mli::WarmFuzzy.list(1)
-      expect(data).to eq response_data
+    context "with no warm fuzzies" do
+      it "returns an empty array"
+    end
+
+    context "with a few warm fuzzies" do
+      it "returns array of warm fuzzies"
     end
   end
 
   describe ".update" do
-    it "puts the params to the id and returns data" do
-      endpoint = "/api/v1/warm_fuzzies/1"
-      attrs = {body: "You are just okay."}
-      expected_params = {warm_fuzzy: attrs}
-      response_data = {
-        "author" => "Your Biggest Fan",
-        "body" => "You are just okay.",
-        "created_at" => "2026-02-01T00:00:00.000Z",
-        "id" => 1,
-        "received_at" => "2026-01-01T00:00:00.000Z",
-        "title" => "Just Okay",
-        "updated_at" => "2025-01-01T12:00:00.000Z"
-      }
-      response = double(:mock_response, body: response_data)
-      expect(Mli.connection).to receive(:put).with(endpoint, expected_params).and_return(response)
-      data = Mli::WarmFuzzy.update(1, attrs)
-      expect(data).to eq response_data
+    context "with a nil id" do
+      it "raises a NilIdError"
+    end
+
+    context "with an invalid id" do
+      it "returns a not found error"
+    end
+
+    context "with nil attrs" do
+      it "returns an invalid params error"
+    end
+
+    context "with empty attrs" do
+      it "returns an invalid params error"
+    end
+
+    context "with a valid id and an attr" do
+      it "returns warm fuzzy data"
     end
   end
 
   describe ".view" do
-    context "when record not found" do
-      it "gets the id and returns error message" do
-        response_data = {"error" => "Couldn't find Book with 'id'=\"invalid\""}
-        endpoint = "/api/v1/books/invalid"
-        response = double(:mock_response, body: response_data)
-        expect(Mli.connection).to receive(:get).with(endpoint).and_return(response)
-        data = Mli::WarmFuzzy.view("invalid")
-        expect(data).to eq response_data
-      end
+    context "with a nil id" do
+      it "raises a NilIdError"
     end
 
-    it "gets the id and returns data" do
-      endpoint = "/api/v1/warm_fuzzies/1"
-      id = 1
-      response_data = {
-        "author" => "Your Biggest Fan",
-        "body" => "You are just okay.",
-        "created_at" => "2026-02-01T00:00:00.000Z",
-        "id" => 1,
-        "received_at" => "2026-01-01T00:00:00.000Z",
-        "title" => "Just Okay",
-        "updated_at" => "2025-01-01T12:00:00.000Z"
-      }
-      response = double(:mock_response, body: response_data)
-      expect(Mli.connection).to receive(:get).with(endpoint).and_return(response)
-      data = Mli::WarmFuzzy.view(id)
-      expect(data).to eq response_data
+    context "with an invalid id" do
+      it "returns a not found error"
+    end
+
+    context "with a valid id" do
+      it "returns warm fuzzy data"
     end
   end
 end

@@ -9,6 +9,8 @@ module Mli
     end
 
     def self.delete(id)
+      raise NilIdError if id.nil?
+
       endpoint = "/api/v1/books/#{id}"
       response = Mli.connection.delete(endpoint)
       return response.body unless response.success?
@@ -24,6 +26,8 @@ module Mli
     end
 
     def self.update(id, attrs)
+      raise NilIdError if id.nil?
+
       endpoint = "/api/v1/books/#{id}"
       book_params = Mli::ParamBuilder.from(attrs)
       params = {book: book_params}
@@ -32,6 +36,8 @@ module Mli
     end
 
     def self.view(id)
+      raise NilIdError if id.nil?
+
       endpoint = "/api/v1/books/#{id}"
       response = Mli.connection.get(endpoint)
       response.body
