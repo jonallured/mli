@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 * Add a CHANGELOG ([#12][])
 * Add warm fuzzy command and resource ([#15][])
+* Add Boop command and resource ([#17][])
 
 ### Changed
 
@@ -82,3 +83,4 @@ The format is based on [Keep a Changelog][] and this project adheres to
 [#14]: https://github.com/jonallured/mli/pull/14
 [#15]: https://github.com/jonallured/mli/pull/15
 [#16]: https://github.com/jonallured/mli/pull/16
+[#17]: https://github.com/jonallured/mli/pull/17

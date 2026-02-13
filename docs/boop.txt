@@ -1,0 +1,29 @@
+// create
+  POST /api/v1/boops
+
+  Example:
+    $ mli boop create --display-type skull
+
+// delete
+  DELETE /api/v1/boops/:id
+
+  Example:
+    $ mli boop delete 1
+
+// list
+  GET /api/v1/boops
+
+  Example:
+    $ mli boop list --page 3
+
+// update
+  PUT /api/v1/boops/:id
+
+  Example:
+    $ mli boop update 1 --display-type smile
+
+// view
+  GET /api/v1/boops/:id
+
+  Example:
+    $ mli boop view 1

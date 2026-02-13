@@ -4,6 +4,9 @@ module Mli
       desc "book", "Use /api/v1/books endpoint family"
       subcommand "book", BookCommand
 
+      desc "boop", "Use /api/v1/boops endpoint family"
+      subcommand "boop", BoopCommand
+
       desc "ping", "Use /api/v1/ping endpoint family"
       subcommand "ping", PingCommand
 
