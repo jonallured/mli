@@ -1,4 +1,3 @@
-# mli
 # mli [![CI][badge]][actions]
 
 This gem wraps the [Monolithium][] API and provides CLI and classes to make
@@ -38,9 +37,9 @@ This will:
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License][MIT].
+The gem is available as open source under the terms of the [MIT License][mit].
 
-[MIT]: https://opensource.org/licenses/MIT
 [Monolithium]: https://github.com/jonallured/monolithium
 [actions]: https://github.com/jonallured/mli/actions/workflows/main.yml
 [badge]: https://github.com/jonallured/mli/actions/workflows/main.yml/badge.svg
+[mit]: https://opensource.org/licenses/MIT
