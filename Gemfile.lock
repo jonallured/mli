@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mli (0.0.3)
+    mli (0.0.4)
       faraday
       faraday-multipart
       thor
