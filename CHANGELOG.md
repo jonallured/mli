@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 * Move resource files to separate folder ([#11][])
 * Use singular for resources and commands ([#13][])
 * Upgrade to Ruby 4 ([#18][])
+* Improve CI configuration ([#19][])
 
 ### Deprecated
 
@@ -86,3 +87,4 @@ The format is based on [Keep a Changelog][] and this project adheres to
 [#16]: https://github.com/jonallured/mli/pull/16
 [#17]: https://github.com/jonallured/mli/pull/17
 [#18]: https://github.com/jonallured/mli/pull/18
+[#19]: https://github.com/jonallured/mli/pull/19
