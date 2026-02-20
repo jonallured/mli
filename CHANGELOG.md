@@ -12,6 +12,20 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.0.4][] - 2026-02-20
+
+### Added
+
 * Add a CHANGELOG ([#12][])
 * Add warm fuzzy command and resource ([#15][])
 * Add Boop command and resource ([#17][])
@@ -24,17 +38,11 @@ The format is based on [Keep a Changelog][] and this project adheres to
 * Upgrade to Ruby 4 ([#18][])
 * Improve CI configuration ([#19][])
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 * Configure spec task without verbose output ([#9][])
 * Fix some reorg fallout ([#14][])
 * Build from flat attrs ([#16][])
-
-### Security
 
 ## [0.0.3][] - 2026-01-07
 
@@ -64,11 +72,12 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 * Fix path issues when using installed gem ([#2][])
 
-[Unreleased]: https://github.com/jonallured/mli/compare/v0.0.3...HEAD
+[Unreleased]: https://github.com/jonallured/mli/compare/v0.0.4...HEAD
 
 [0.0.1]: https://github.com/jonallured/mli/releases/tag/v0.0.1
 [0.0.2]: https://github.com/jonallured/mli/releases/tag/v0.0.2
 [0.0.3]: https://github.com/jonallured/mli/releases/tag/v0.0.3
+[0.0.4]: https://github.com/jonallured/mli/releases/tag/v0.0.4
 
 [#1]: https://github.com/jonallured/mli/pull/1
 [#2]: https://github.com/jonallured/mli/pull/2
