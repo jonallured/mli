@@ -21,6 +21,11 @@ module Mli
         true
       end
 
+      def self.index_options
+        option :page, type: :numeric, required: false
+        option :per_page, type: :numeric, required: false, desc: "At most 100"
+      end
+
       no_commands do
         def formatted(data)
           options[:pretty] ? JSON.pretty_generate(data) : JSON.generate(data)

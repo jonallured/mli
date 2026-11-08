@@ -1,0 +1,8 @@
+// list
+  GET /api/v1/financial_statements
+
+  Prints an object with next_page, records and total_count keys.
+
+  Example:
+    $ mli financial_statement list --financial-account-id 1
+    $ mli financial_statement list --period-start-on 2024 --sort period_start_on

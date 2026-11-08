@@ -7,6 +7,15 @@ module Mli
       desc "boop", "Use /api/v1/boops endpoint family"
       subcommand "boop", BoopCommand
 
+      desc "financial_account", "Use /api/v1/financial_accounts endpoint family"
+      subcommand "financial_account", FinancialAccountCommand
+
+      desc "financial_statement", "Use /api/v1/financial_statements endpoint family"
+      subcommand "financial_statement", FinancialStatementCommand
+
+      desc "financial_transaction", "Use /api/v1/financial_transactions endpoint family"
+      subcommand "financial_transaction", FinancialTransactionCommand
+
       desc "ping", "Use /api/v1/ping endpoint family"
       subcommand "ping", PingCommand
 

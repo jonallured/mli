@@ -1,0 +1,14 @@
+// list
+  GET /api/v1/financial_accounts
+
+  Prints an object with next_page, records and total_count keys.
+
+  Example:
+    $ mli financial_account list --category checking
+    $ mli financial_account list --sort name --page 2 --per-page 25
+
+// view
+  GET /api/v1/financial_accounts/:id
+
+  Example:
+    $ mli financial_account view 1
