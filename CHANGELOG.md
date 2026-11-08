@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 ### Added
 
+* Add financial account, statement and transaction commands ([#22][])
+
 ### Changed
 
 * Upgrade to Ruby 4.0.5 ([#20][])
@@ -102,3 +104,4 @@ The format is based on [Keep a Changelog][] and this project adheres to
 [#19]: https://github.com/jonallured/mli/pull/19
 [#20]: https://github.com/jonallured/mli/pull/20
 [#21]: https://github.com/jonallured/mli/pull/21
+[#22]: https://github.com/jonallured/mli/pull/22

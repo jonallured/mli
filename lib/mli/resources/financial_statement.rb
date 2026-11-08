@@ -1,0 +1,11 @@
+module Mli
+  class FinancialStatement < BaseResource
+    def self.list(params)
+      endpoint = "/api/v1/financial_statements"
+      response = Mli.connection.get(endpoint, params)
+      return response.body unless response.success?
+
+      page_from(response)
+    end
+  end
+end
