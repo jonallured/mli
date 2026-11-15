@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 ### Added
 
 * Add financial account, statement and transaction commands ([#22][])
+* Add financial statement create and update commands ([#23][])
 
 ### Changed
 
@@ -105,3 +106,4 @@ The format is based on [Keep a Changelog][] and this project adheres to
 [#20]: https://github.com/jonallured/mli/pull/20
 [#21]: https://github.com/jonallured/mli/pull/21
 [#22]: https://github.com/jonallured/mli/pull/22
+[#23]: https://github.com/jonallured/mli/pull/23
