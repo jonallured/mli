@@ -1,3 +1,11 @@
+// create
+  POST /api/v1/financial_statements
+
+  Amounts are integer cents.
+
+  Example:
+    $ mli financial_statement create --financial-account-id 1 --period-start-on 2024-06-01 --starting-amount-cents 10000 --ending-amount-cents 7000
+
 // list
   GET /api/v1/financial_statements
 
@@ -6,3 +14,11 @@
   Example:
     $ mli financial_statement list --financial-account-id 1
     $ mli financial_statement list --period-start-on 2024 --sort period_start_on
+
+// update
+  PATCH /api/v1/financial_statements/:id
+
+  Amounts are integer cents. A statement can't be moved to another account.
+
+  Example:
+    $ mli financial_statement update 1 --ending-amount-cents 8000
