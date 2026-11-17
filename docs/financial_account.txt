@@ -1,3 +1,12 @@
+// create
+  POST /api/v1/financial_accounts
+
+  Category is one of checking, savings, health_savings, good_debt, bad_debt or
+  retirement. Names must be unique.
+
+  Example:
+    $ mli financial_account create --name "Big Bank Checking" --category checking
+
 // list
   GET /api/v1/financial_accounts
 
@@ -6,6 +15,15 @@
   Example:
     $ mli financial_account list --category checking
     $ mli financial_account list --sort name --page 2 --per-page 25
+
+// update
+  PATCH /api/v1/financial_accounts/:id
+
+  Pass --closed-on to mark an account as closed.
+
+  Example:
+    $ mli financial_account update 1 --name "Big Bank Savings"
+    $ mli financial_account update 1 --closed-on 2026-10-31
 
 // view
   GET /api/v1/financial_accounts/:id

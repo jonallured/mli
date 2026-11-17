@@ -1,4 +1,105 @@
 RSpec.describe Mli::Cli::FinancialAccountCommand do
+  let(:account_payload) do
+    {
+      "category" => "checking",
+      "closed_on" => nil,
+      "created_at" => "2026-11-17T12:00:00.000Z",
+      "id" => 1,
+      "name" => "Big Bank Checking",
+      "updated_at" => "2026-11-17T12:00:00.000Z"
+    }
+  end
+
+  describe "create" do
+    let(:actual_body) { {} }
+
+    before do
+      faraday_stubs.post("/api/v1/financial_accounts") do |env|
+        actual_body.merge!(JSON.parse(env.body))
+        [api_status, {}, api_payload]
+      end
+    end
+
+    context "without required options" do
+      let(:api_status) { 201 }
+      let(:api_payload) { account_payload }
+
+      it "exits and prints error message" do
+        expected_output = "No value provided for required options '--category', '--name'\n"
+
+        expect do
+          expect do
+            Mli::Cli::RootCommand.start(%w[financial_account create])
+          end.to raise_error(SystemExit)
+        end.to output(expected_output).to_stderr
+      end
+    end
+
+    context "with required options" do
+      let(:api_status) { 201 }
+      let(:api_payload) { account_payload }
+
+      let(:argument_vector) do
+        ["financial_account", "create", "--name", "Big Bank Checking", "--category", "checking"]
+      end
+
+      it "nests the attrs under financial_account and prints the created account" do
+        expected_body = {
+          "financial_account" => {
+            "category" => "checking",
+            "name" => "Big Bank Checking"
+          }
+        }
+
+        expect do
+          Mli::Cli::RootCommand.start(argument_vector)
+        end.to output(account_payload.to_json + "\n").to_stdout
+
+        expect(actual_body).to eq expected_body
+      end
+    end
+
+    context "with a closed_on" do
+      let(:api_status) { 201 }
+      let(:api_payload) { account_payload.merge("closed_on" => "2026-10-31") }
+
+      let(:argument_vector) do
+        ["financial_account", "create", "--name", "Big Bank Checking", "--category", "checking", "--closed-on", "2026-10-31"]
+      end
+
+      it "sends it too" do
+        expected_body = {
+          "financial_account" => {
+            "category" => "checking",
+            "closed_on" => "2026-10-31",
+            "name" => "Big Bank Checking"
+          }
+        }
+
+        expect do
+          Mli::Cli::RootCommand.start(argument_vector)
+        end.to output(api_payload.to_json + "\n").to_stdout
+
+        expect(actual_body).to eq expected_body
+      end
+    end
+
+    context "with a name another account already has" do
+      let(:api_status) { 422 }
+      let(:api_payload) { {"error" => "Validation failed: Name has already been taken"} }
+
+      let(:argument_vector) do
+        ["financial_account", "create", "--name", "Big Bank Checking", "--category", "checking"]
+      end
+
+      it "prints the API error" do
+        expect do
+          Mli::Cli::RootCommand.start(argument_vector)
+        end.to output(api_payload.to_json + "\n").to_stdout
+      end
+    end
+  end
+
   describe "list" do
     let(:actual_params) { {} }
     let(:api_status) { 200 }
@@ -151,6 +252,101 @@ RSpec.describe Mli::Cli::FinancialAccountCommand do
         expect do
           Mli::Cli::RootCommand.start(argument_vector)
         end.to output(expected_output).to_stdout
+      end
+    end
+  end
+
+  describe "update" do
+    let(:actual_body) { {} }
+
+    before do
+      faraday_stubs.patch("/api/v1/financial_accounts/1") do |env|
+        actual_body.merge!(JSON.parse(env.body))
+        [api_status, {}, api_payload]
+      end
+    end
+
+    context "without required argument" do
+      let(:api_status) { 200 }
+      let(:api_payload) { account_payload }
+
+      it "exits and prints error message" do
+        expected_output = <<~ERR
+          ERROR: "mli financial_account update" was called with no arguments
+          Usage: "mli financial_account update ID"
+        ERR
+
+        expect do
+          expect do
+            Mli::Cli::RootCommand.start(%w[financial_account update])
+          end.to raise_error(SystemExit)
+        end.to output(expected_output).to_stderr
+      end
+    end
+
+    context "with one option" do
+      let(:api_status) { 200 }
+      let(:api_payload) { account_payload.merge("name" => "Big Bank Savings") }
+
+      it "sends only that attr and prints the updated account" do
+        expected_body = {"financial_account" => {"name" => "Big Bank Savings"}}
+
+        expect do
+          Mli::Cli::RootCommand.start(["financial_account", "update", "1", "--name", "Big Bank Savings"])
+        end.to output(api_payload.to_json + "\n").to_stdout
+
+        expect(actual_body).to eq expected_body
+      end
+    end
+
+    context "with all options" do
+      let(:api_status) { 200 }
+      let(:api_payload) { account_payload.merge("category" => "savings", "closed_on" => "2026-10-31", "name" => "Big Bank Savings") }
+
+      let(:argument_vector) do
+        ["financial_account", "update", "1", "--name", "Big Bank Savings", "--category", "savings", "--closed-on", "2026-10-31"]
+      end
+
+      it "sends all of them" do
+        expected_body = {
+          "financial_account" => {
+            "category" => "savings",
+            "closed_on" => "2026-10-31",
+            "name" => "Big Bank Savings"
+          }
+        }
+
+        expect do
+          Mli::Cli::RootCommand.start(argument_vector)
+        end.to output(api_payload.to_json + "\n").to_stdout
+
+        expect(actual_body).to eq expected_body
+      end
+    end
+
+    context "with today for closed_on" do
+      let(:api_status) { 200 }
+      let(:api_payload) { account_payload }
+
+      it "sends today's date" do
+        expected_body = {"financial_account" => {"closed_on" => Time.now.utc.to_date.iso8601}}
+
+        expect do
+          Mli::Cli::RootCommand.start(%w[financial_account update 1 --closed-on today])
+        end.to output(api_payload.to_json + "\n").to_stdout
+
+        expect(actual_body).to eq expected_body
+      end
+    end
+
+    context "with a category that isn't allowed" do
+      let(:api_status) { 422 }
+      let(:api_payload) { {"error" => "Validation failed: Category is not included in the list"} }
+
+      it "prints the API error" do
+        expect do
+          Mli::Cli::RootCommand.start(%w[financial_account update 1 --category nope])
+        end.to output(api_payload.to_json + "\n").to_stdout
       end
     end
   end
