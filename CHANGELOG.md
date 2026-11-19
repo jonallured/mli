@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 * Upgrade to Ruby 4.0.5 ([#20][])
 * Upgrade to Ruby 4.0.6 ([#21][])
+* Upgrade to Ruby 4.0.10 ([#25][])
 
 ### Deprecated
 
@@ -109,3 +110,4 @@ The format is based on [Keep a Changelog][] and this project adheres to
 [#22]: https://github.com/jonallured/mli/pull/22
 [#23]: https://github.com/jonallured/mli/pull/23
 [#24]: https://github.com/jonallured/mli/pull/24
+[#25]: https://github.com/jonallured/mli/pull/25
